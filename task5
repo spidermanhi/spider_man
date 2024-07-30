@@ -1,0 +1,32 @@
+Task-5
+//pig latin scripts sort, grp, join
+$nano f1.txt
+1,nan,hyd
+2,vp,jntu
+3,nik,mir(ctrl+x, y, enter)
+$nano f2.txt
+1,93
+2,96
+3,98(ctrl+x, y, enter)
+$hadoop fs -mkdir t5
+$hadoop fs -put f1.txt /user/cloudera/t5
+$hadoop fs -cat /user/cloudera/t5/f1.txt
+$hadoop fs -put f2.txt /user/cloudera/t5
+$hadoop fs -cat /user/cloudera/t5/f2.txt
+$pig
+grunt>l1 = LOAD ‘/user/cloudera/t5/f1.txt’ USING PigStorage(‘,’) AS (sno:int, 
+name:chararray,loc:chararray);
+grunt>DUMP l1;
+grunt>l2 = LOAD ‘/user/cloudera/t5/f2.txt’ USING PigStorage(‘,’) AS (sno:int, 
+marks:int);
+grunt>DUMP l2;
+grunt>fe=foreach l1 generate sno,name;
+grunt>DUMP fe
+grunt>filter=filter f1 by rollno >2;
+grunt>DUMP filter;
+grunt>join=join f1 by sno,f2 by sno;
+grunt>DUMP join;
+grunt>ob=order f2 by marks DESC;
+grunt>DUMP ob;
+grunt>D=Distinct f1
+grunt>DUMP D;
