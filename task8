@@ -59,7 +59,6 @@ Find out total sales of the company
 SELECT SUM(Sales_in_Rs) FROM sales1;
 
 
-
 Find out the max and min sales of the company
 
 SELECT MAX(Sales_in_Rs) FROM sales1;
@@ -79,15 +78,12 @@ GROUP BY Loc;
 Find out the average sales by location
 
 SELECT AVG(Sales_in_Rs) FROM sales1
-
 GROUP BY Loc;
-
 
 
 Count the no. of sales person by location
 
 SELECT COUNT(Sales_Executive) FROM sales1
-
 GROUP BY Loc;
 
 
@@ -95,44 +91,21 @@ GROUP BY Loc;
 Compare total sales & average sales by gender
 
 Drill down sales performance by age and sales
-
 Drill down sales performance by gender sand sales
-
 Drill down sales performance by location and sales
 
 
 
 Exercise-2: Analysis of Queens Library Branches
 
-
-
 hive> CREATE DATABASE Libraries;
-
 hive>USE Libraries;
 
 Create a table in hive named ‘Queens_Libraries’ under ‘Libraries’ database:
 
-hive>CREATE TABLE Queens_Libraries (name STRING, 
-
-                                                                      phone STRING, 
-
-                                                                      Mn STRING, 
-
-                                                                      Tu STRING, 
-
-                                                                      We STRING, 
-
-                                                                      Th STRING, 
-
-                                                                      Fr STRING, 
-
-                                                                      Sa STRING,
-
-                                                                      Su STRING,
-
-                                                                      notification STRING, 
-
-                                                                      Location1 STRING)
+hive>CREATE TABLE Queens_Libraries (name STRING,   phone STRING, Mn STRING, 
+   Tu STRING,   We STRING, Th STRING, Fr STRING, Sa STRING,
+  Su STRING, notification STRING,  Location1 STRING)
 
                                                                       ROW FORMAT DELIMITED 
 
@@ -169,8 +142,6 @@ Find the total number of libraries that are no more working in the Queens region
 SELECT COUNT(*) FROM Queens_Libraries 
 
 WHERE Mn = 'closed' AND  Tu = 'closed' AND We = 'closed' AND Th = 'closed' AND Fr = 'closed' AND Sa = 'closed' AND Su = 'closed';
-
-
 
 
 
