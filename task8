@@ -1,15 +1,8 @@
 Hive Commands
 
-Exercise-1: Exploratory Data Analysis(EDA) of Sales using Demographic Data with hive
-
-Connect to hive form cloudera quickstart terminal by typing ‘hive’.
-
 hive> SHOW databases;
-
 hive> CREATE DATABASE sales;
-
 hive>USE sales;
-
 //Create a table named ‘sales1’ 
 
 hive>CREATE TABLE sales1(Sales_Executive INT,
