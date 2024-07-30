@@ -1,0 +1,405 @@
+task-1a
+$hadoop fs -ls
+or
+$hdfs dfs -ls
+$hadoop fs -mkdir /directory-name
+or
+$hdfs dfs -mkdir /directory-name
+$hadoop fs -rm /file-name
+or
+$hdfs dfs -rm /file-name
+$hadoop fs -rmr /directory-name
+or
+$hdfs dfs -rmr /directory-name
+$hadoop fs -rmdir /directory-name
+or
+$hdfs dfs -rmdir /directory-name
+$ hadoop fs -put /local-file-path /hdfs-file-path
+or
+$ hdfs dfs -put /local-file-path /hdfs-file-path
+$ hadoop fs -cat /hdfs-file-path
+or
+$ hdfs dfs -cat /hdfs-file-path
+$ hadoop fs -du /hdfs-file-path
+or
+$ hdfs dfs -du /hdfs-file-path
+$ hadoop fs -dus /hdfs-directory
+or
+$ hdfs dfs -dus /hdfs-directory
+
+
+
+$ hadoop fs -get /local-file-path /hdfs-file-path
+
+or
+
+$ hdfs dfs -get /local-file-path /hdfs-file-path
+
+
+
+$ hadoop fs -getmerge [-nl] /source /local-destination
+
+or
+
+$ hdfs dfs -getmerge [-nl] /source /local-destination
+
+
+
+$ hadoop fs -count /hdfs-file-path
+
+or
+
+$ hdfs dfs -count /hdfs-file-path
+
+
+
+$ hadoop fs -mv /local-file-path /hdfs-file-path
+
+or
+
+$ hdfs dfs -mv /local-file-path /hdfs-file-path
+
+
+
+$ hadoop fs -moveFromLocal /local-file-path /hdfs-file-path
+
+or
+
+$ hdfs dfs -moveFromLocal /local-file-path /hdfs-file-path
+
+
+
+$ hadoop fs -moveToLocal /hdfs-file-path /local-file-path
+
+or
+
+$ hdfs dfs -moveToLocal /hdfs-file-path /local-file-path
+
+
+
+$ hadoop fs -cp /local-file-path /hdfs-file-path
+
+or
+
+$ hdfs dfs -cp /local-file-path /hdfs-file-path
+
+
+
+$ hadoop fs -setrep /number /file-name
+
+or
+
+$ hdfs dfs -setrep /number /file-name
+
+
+
+$ hadoop fs -tail /hdfs-file-path
+
+or
+
+$ hdfs dfs -tail /hdfs-file-path
+
+
+
+$ hadoop fs -touch /hdfs-file-path
+
+or
+
+$ hdfs dfs -touch /hdfs-file-path
+
+
+
+$ hadoop fs -touchz /hdfs-file-path
+
+or
+
+$ hdfs dfs -touchz /hdfs-file-path
+
+
+
+$ hadoop fs -appendToFile /hdfs-file-path
+
+or
+
+$ hdfs dfs -appendToFile /hdfs-file-path
+
+
+
+$ hadoop fs -copyToLocal /hdfs-file-path /local-file-path
+
+or
+
+$ hdfs dfs -copyToLocal /hdfs-file-path /local-file-path
+
+
+
+$ hadoop fs -copyToLocal /hdfs-file-path /local-file-path
+
+or
+
+$ hdfs dfs -copyToLocal /hdfs-file-path /local-file-path
+
+
+
+$ hadoop fs -usage mkdir
+
+or
+
+$ hdfs dfs -usage mkdir
+
+
+
+$ hadoop fs -checksum [-v] URI
+
+or
+
+$ hdfs dfs -checksum [-v] URI
+
+
+
+$ hadoop fs -chgrp [-R] groupname
+
+or
+
+$ hdfs dfs -chgrp [-R] groupname
+
+
+
+$ hadoop fs -chmod [-R] hdfs-file-path
+
+or
+
+$ hdfs dfs -chmod [-R] hdfs-file-path
+
+
+
+$ hadoop fs -chown [-R] [owner][:[group]] hdfs-file-path
+
+or
+
+$ hdfs dfs -chown [-R] [owner][:[group]] hdfs-file-path
+
+
+
+$ hadoop fs -df /user/hadoop/dir1
+
+or
+
+$ hdfs dfs -df /user/hadoop/dir1
+
+
+
+$ hadoop fs -head /hdfs-file-path
+
+or
+
+$ hdfs dfs -head /hdfs-file-path
+
+
+
+$ hadoop fs -createSnapshot /path /snapshotName
+
+or
+
+$ hdfs dfs -createSnapshot /path /snapshotName
+
+
+
+$ hadoop fs -deleteSnapshot /path /snapshotName
+
+or
+
+$ hdfs dfs -deleteSnapshot /path /snapshotName
+
+
+
+$ hadoop fs -renameSnapshot /path /oldName /newName
+
+or
+
+$ hdfs dfs -renameSnapshot /path /oldName /newName
+
+
+
+$ hadoop fs –expunge -immediate -fs /hdfs-file-path
+
+or
+
+$ hdfs dfs –expunge -immediate -fs /hdfs-file-path
+
+
+
+$ hadoop fs -stat /format
+
+or
+
+$ hdfs dfs -stat /format
+
+
+
+$ hadoop fs -truncate [-w] /length /hdfs-file-path
+
+or
+
+$ hdfs dfs -truncate [-w] /length /hdfs-file-path
+
+
+
+$hadoop fs -find / -name test -print
+
+or
+
+$hdfs dfs -find / -name test -print
+
+
+
+Task-1b
+
+
+
+import java.io.IOException;
+
+import java.util.StringTokenizer;
+
+
+
+
+
+import org.apache.hadoop.conf.Configuration;
+
+import org.apache.hadoop.fs.Path;
+
+import org.apache.hadoop.io.IntWritable;
+
+import org.apache.hadoop.io.Text;
+
+import org.apache.hadoop.mapreduce.Job;
+
+import org.apache.hadoop.mapreduce.Mapper;
+
+import org.apache.hadoop.mapreduce.Reducer;
+
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+
+
+
+
+public class WordCount {
+
+
+
+
+
+  public static class TokenizerMapper
+
+       extends Mapper<Object, Text, Text, IntWritable>{
+
+
+
+
+
+    private final static IntWritable one = new IntWritable(1);
+
+    private Text word = new Text();
+
+
+
+
+
+    public void map(Object key, Text value, Context context
+
+                    ) throws IOException, InterruptedException {
+
+      StringTokenizer itr = new StringTokenizer(value.toString());
+
+      while (itr.hasMoreTokens()) {
+
+        word.set(itr.nextToken());
+
+        context.write(word, one);
+
+      }
+
+    }
+
+  }
+
+
+
+
+
+  public static class IntSumReducer
+
+       extends Reducer<Text,IntWritable,Text,IntWritable> {
+
+    private IntWritable result = new IntWritable();
+
+
+
+
+
+    public void reduce(Text key, Iterable<IntWritable> values,
+
+                       Context context
+
+                       ) throws IOException, InterruptedException {
+
+      int sum = 0;
+
+      for (IntWritable val : values) {
+
+        sum += val.get();
+
+      }
+
+      result.set(sum);
+
+      context.write(key, result);
+
+    }
+
+  }
+
+
+
+
+
+  public static void main(String[] args) throws Exception {
+
+    Configuration conf = new Configuration();
+
+    Job job = Job.getInstance(conf, "word count");
+
+    job.setJarByClass(WordCount.class);
+
+    job.setMapperClass(TokenizerMapper.class);
+
+    job.setCombinerClass(IntSumReducer.class);
+
+    job.setReducerClass(IntSumReducer.class);
+
+    job.setOutputKeyClass(Text.class);
+
+    job.setOutputValueClass(IntWritable.class);
+
+    FileInputFormat.addInputPath(job, new Path(args[0]));
+
+    FileOutputFormat.setOutputPath(job, new Path(args[
+
+1]));
+
+    System.exit(job.waitForCompletion(true) ? 0 : 1);
+
+  }
+
+}
+
+
+
+
+
+
+
