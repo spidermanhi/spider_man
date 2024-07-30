@@ -17,24 +17,13 @@ hive>USE sales;
 Create a table named ‘sales1’ 
 
 CREATE TABLE sales1(Sales_Executive INT,
+Sales_Executive_Name STRING,  Gender STRING,
+Age INT,Loc STRING, Sales_in_Rs INT)
 
-                                      Sales_Executive_Name STRING,
-
-                                      Gender STRING
-
-                                      Age INT,
-
-                                      Loc STRING,
-
-                                      Sales_in_Rs INT)
-
-                                      ROW FORMAT DELIMITED
-
-                                      FIELDS TERMINATED BY ‘,’
-
-                                     LINES TERMINATED BY ‘\n’
-
-                                     STORED AS TEXTFILE;
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ‘,’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
 
 Load data from hdfs into hive table,i.e. sales1
 
