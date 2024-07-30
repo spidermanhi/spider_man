@@ -106,28 +106,20 @@ OutputPath.getFileSystem(conf).delete(OutputPath);
 
 System.exit(job.waitForCompletion(true) ? 0 : 1);}}
 
+
+
+
 Output(terminal)
 
 $hadoop fs -ls /
-
 $hadoop fs -copyfromlocal Weather.txt /bda
-
 $hadoop jar /home/clouderaa/WeatherForecast.jar /bda/Weather.txt /output
-
 $hadoop fs -ls /output
-
 $hadoop fs -cat >/home/cloudera/ProcessFile2.txt
-
 $hdfs dfs -ls /
-
 $hadoop fs -mkdir /nandini
-
 $hadoop fs -put /home/cloudera/ProcessFile2.txt/nandini
-
 $hadoop fs -cat /nandini/ProcessFile2.txt
-
 $hadoop jar /home/cloudera/Weather.jar weather /nandini/ProcessFile2.txt /output
-
 $hadoop fs -ls /output
-
 $hadoop fs -cat /output/part-r-000
