@@ -1,0 +1,7 @@
+sqoop import --connect jdbc:mysql://127.0.0.1:3306/task11 \
+             --username root \
+             --password cloudera \
+             --table task11t \
+             --hive-import \
+             --hive-table gh.ght \
+             --m 1
