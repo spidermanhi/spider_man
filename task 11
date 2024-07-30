@@ -1,3 +1,33 @@
+Open 3 terminal
+
+1.$mysql -u root -p cloudera
+
+Enterpassword-cloudera
+
+welcome to my sql monitor
+
+mysql>show database;
+
+mysql> ceate database t1;
+
+mysql> use t1;
+
+mysql> create table t2(name varchar(65), no int);
+
+mysql> insert into table t2 values("abc",1);
+
+mysql> insert into table t2 values(“xys”, 2);
+
+2.$hive
+
+hive>create database t3;
+
+hive>use t3;
+
+hive>create table t4(name string(65), no int);
+2.//hive
+hive > select * from table 1;
+
 sqoop import --connect jdbc:mysql://127.0.0.1:3306/task11 \
              --username root \
              --password cloudera \
