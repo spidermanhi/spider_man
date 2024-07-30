@@ -5,8 +5,7 @@
 5. hive> CREATE TABLE sales1(SalesExecutive INT,Name STRING,Gender STRING,Age
 INT,Location STRING,SalesRs INT)ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES
 TERMINATED BY '\n' STORED AS TEXTFILE;
-6. Load data from hdfs into hive table,i.e. sales1
-7. hive> LOAD DATA INPATH '/user/cloudera/sample1/sales1.csv' into TABLE sales1;
+ hive> LOAD DATA INPATH '/user/cloudera/sample1/sales1.csv' into TABLE sales1;
 8. Perform EDA using the following hive queries:
 hive> set hive.map.aggr = true;
 hive> set hive.execution.engine=tez;
@@ -26,26 +25,19 @@ SELECT SUM(SalesRs) FROM sales1 GROUP BY Location;
 SELECT AVG(SalesRs) FROM sales1 GROUP BY Location;
 
 5. Count the no. of sales person by location
-SELECT COUNT(SalesExecutive) FROM sales1
+SELECT COUNT(SalesExecutive) FROM sales1;
 
 ALTER TABLE <current_table_name> RENAME TO <new_table_name>;
 hive> ALTER table sales1 rename to sales2;
 hive> select *from sales2;
 
 2. ADD Columns
-ALTER TABLE <table_name> ADD COLUMNS (<col-name> <data-type> COMMENT ”, <col-name>
-<data-type> COMMENT ”, ….. )
 hive> alter table sales2 add columns(phonenumber int);
 
 3. CHANGE Column
-ALTER TABLE <table_name> CHANGE <column_name> <new_column_name> <new_data_type>;
 hive> ALTER TABLE sales2 CHANGE Name Sname STRING;
 
 4.REPLACE Column
-ALTER TABLE <table_name> REPLACE COLUMNS (<attribute_name> <data_type>,<attribute_name>
-<data_type>,
-..
-);
 hive> ALTER TABLE sales2 REPLACE COLUMNS (Sname STRING);
 hive> create table std(name string, age int);
 hive> drop table std;
