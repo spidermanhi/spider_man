@@ -1,22 +1,12 @@
 Run the Pig Latin Scripts to find Word Count and max. temp for each and every year.
-
 Word Count using Pig Latin
 
-
 grunt> inputline = load '/user/cloudera/wc/bd.txt' using PigStorage('\t') as (data:chararray);
-
 words = FOREACH inputline GENERATE FLATTEN(TOKENIZE(data)) AS word;
-
 filtered_words = FILTER words BY word MATCHES '\\w+';
-
 word_groups = GROUP filtered_words BY word;
-
-word_count = FOREACH word_groups GENERATE COUNT(filtered_words) AS 
-
-count, group AS word;
-
+word_count = FOREACH word_groups GENERATE COUNT(filtered_words) AS count, group AS word;
 ordered_word_count = ORDER word_count BY count DESC;
-
 DUMP ordered_word_count;
 
 You can use the below command to save the result in HDFS.
@@ -47,4 +37,4 @@ C = LIMIT B 1;
 
 D = FOREACH C GENERATE Temp;
 
-DUMP D
+DUMP D;
