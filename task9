@@ -9,9 +9,6 @@ Inside that create a new class.
   Package name: udf_example
 
 Class name: DataStandardization
-
-
-
 Program:
 
 package udf_example
@@ -24,11 +21,9 @@ public class DataStandardization extends UDF
       if(input==null)
         {
            return null;
-
         }
       return (input.toString().toUpperCase());
-}
-}  
+}}  
 
 Step 2:
 
