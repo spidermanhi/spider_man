@@ -1,0 +1,8 @@
+ nano car.txt(fill something)
+ nano app. txt(empty file)
+ hadoop fs -mkdir /user/cloudera/ank
+ Hadoop fs -put car. txt /user/cloudera/ank
+ Hadoop fs -put app. txt /user/cloudera/ank
+ Hadoop fs -cat /user/cloudera/ank/car.txt
+ Hadoop fs -cp /user/cloudera/ank/car.txt /user/cloudera/ank/app.txt
+ Hadoop fs -cat /user/cloudera/ank/app.txt
