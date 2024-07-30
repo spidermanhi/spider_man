@@ -9,20 +9,14 @@ word_count = FOREACH word_groups GENERATE COUNT(filtered_words) AS count, group 
 ordered_word_count = ORDER word_count BY count DESC;
 DUMP ordered_word_count;
 
-You can use the below command to save the result in HDFS.
-
-grunt> store ordered_word_count; into '/user/cloudera/wc/output/';
 
 Find the Maximum Year in a given dataset using PIG
 
 Option1:
 
 A = LOAD 'input' USING PigStorage() AS (Year:int,Temp:int);
-
 B = GROUP A ALL;
-
 C = FOREACH B GENERATE MAX(A.Temp);
-
 DUMP C;
 
 or
@@ -30,11 +24,7 @@ or
 Option2: Using (ORDER and LIMIT)
 
 A = LOAD 'input' USING PigStorage() AS (Year:int,Temp:int);
-
 B = ORDER A BY Temp DESC;
-
 C = LIMIT B 1;
-
 D = FOREACH C GENERATE Temp;
-
 DUMP D;
