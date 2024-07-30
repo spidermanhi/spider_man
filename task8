@@ -1,7 +1,3 @@
-Task8
-
-
-
 Hive Commands
 
 Exercise-1: Exploratory Data Analysis(EDA) of Sales using Demographic Data with hive
@@ -14,9 +10,9 @@ hive> CREATE DATABASE sales;
 
 hive>USE sales;
 
-Create a table named ‘sales1’ 
+//Create a table named ‘sales1’ 
 
-CREATE TABLE sales1(Sales_Executive INT,
+hive>CREATE TABLE sales1(Sales_Executive INT,
 Sales_Executive_Name STRING,  Gender STRING,
 Age INT,Loc STRING, Sales_in_Rs INT)
 
@@ -25,12 +21,8 @@ FIELDS TERMINATED BY ‘,’
 LINES TERMINATED BY ‘\n’
 STORED AS TEXTFILE;
 
-Load data from hdfs into hive table,i.e. sales1
-
-LOAD DATA INPATH ‘/user/cloudera/sample/sales.csv’ into TABLE sales1;
-
-
-
+//Load data from hdfs into hive table,i.e. sales1
+hive>LOAD DATA INPATH ‘/user/cloudera/sample/sales.csv’ into TABLE sales1;
 
 
 Perform EDA using the following hive queries:
